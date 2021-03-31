@@ -1,4 +1,4 @@
-lxml==4.3.3
+lxml==4.6.3
 Pillow==6.0.0
 qrcode==6.1
 six==1.12.0
