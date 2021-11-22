@@ -47,7 +47,7 @@ class RateLimiter:
                 last_consumption_time = time.monotonic()
 
                 await asyncio.sleep(consumption_rate)
-        except asyncio.CancelledError:
+        except asyncio.CancelledError as e:
             print("Task Cancelled Error Exception: ", e)
             raise
         except Exception as e:
