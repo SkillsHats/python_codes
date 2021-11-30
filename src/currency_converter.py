@@ -1,4 +1,20 @@
+import argparse
 import requests
+
+
+def init_argparse() -> argparse.ArgumentParser:
+    parser = argparse.ArgumentParser(
+        usage="%(prog)s [OPTION] ...",
+        description="Convert Currency"
+    )
+    parser.add_argument(
+        "-v", "--version", action="version",
+        version = f"{parser.prog} version 1.0.0"
+    )
+    parser.add_argument('-a', '--amount', type=float, help='Amount', required=True)
+    parser.add_argument('-fc', '--from_cur', type=str, help='From Currency', required=False, default='INR')
+    parser.add_argument('-tc', '--to_cur', type=str, help='To Currency', required=False, default='USD')
+    return parser
 
 
 class CurrencyConverter():
@@ -29,9 +45,12 @@ if __name__ == '__main__':
     url = 'https://api.exchangerate-api.com/v4/latest/USD'
     converter = CurrencyConverter(url)
 
-    amount = 100
-    from_curr = "INR"
-    to_curr = "USD"
+    parser = init_argparse()
+    args = parser.parse_args()
+
+    amount = args.amount
+    from_curr = args.from_cur
+    to_curr = args.to_cur
     
     converted_amount = converter.convert( from_curr, to_curr, amount )
     print(f"Convert Amount : ", converted_amount)
