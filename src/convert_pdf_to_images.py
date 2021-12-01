@@ -13,6 +13,14 @@ from pdf2image.exceptions import (
     PDFSyntaxError
 )
 
+
+# USAGE
+"""
+# python convert_pdf_to_images.py -i myfile.pdf
+# python convert_pdf_to_images.py -i myfile.pdf -o output
+"""
+
+
 def init_argparse() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         usage="%(prog)s [OPTION] ...",
@@ -68,7 +76,7 @@ def convert_pdf_to_image(target_file: str, output_folder: str) -> List[str]:
     return output_images
 
 
-if __name__ == '__main__':
+def main():
     parser = init_argparse()
     args = parser.parse_args()
 
@@ -84,8 +92,5 @@ if __name__ == '__main__':
     print(images)
 
 
-# USAGE
-"""
-# python convert_pdf_to_images.py -i myfile.pdf
-# python convert_pdf_to_images.py -i myfile.pdf -o output
-"""
+if __name__ == '__main__':
+    main()
